@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Scanner;
 
 public class HtmlRead {
 
@@ -18,8 +19,14 @@ public class HtmlRead {
                     new InputStreamReader(url.openStream())
             );
             String line;
+
+            Scanner scan = new Scanner(System.in);
+            System.out.println("enter your keyword:");
+            String keyword = scan.nextLine();
+
             while ( (line = reader.readLine()) != null ) {
-                System.out.println(line);
+
+                //System.out.println(line);
                 if(line.contains("href=")) {
                     int start = line.indexOf("href");
 
@@ -35,20 +42,30 @@ public class HtmlRead {
                             //int end = link.indexOf('"');
                             String newLink = link.substring(0, doubleQuote);
                             if(newLink.contains("https")||link.contains("www")){
-                            System.out.println(newLink);}
+                                if(newLink.contains(keyword)){
+                                    System.out.println(newLink);
+                                }
+                            }
                         }else if (doubleQuote == -1){
                             //int end = link.indexOf("'");
                             String newLink = link.substring(0, singleQuote);
                             if(newLink.contains("https")||link.contains("www")){
-                            System.out.println(newLink);}
+                                if(newLink.contains(keyword)){
+                                    System.out.println(newLink);
+                                }
+                            }
                         }else if (singleQuote<doubleQuote){
                             String newLink = link.substring(0, singleQuote);
                             if(newLink.contains("https")||link.contains("www")){
-                            System.out.println(newLink);}
+                                if(newLink.contains(keyword)){
+                                    System.out.println(newLink);
+                                }                            }
                         }else{
                             String newLink = link.substring(0, doubleQuote);
                             if(newLink.contains("https")||link.contains("www")){
-                            System.out.println(newLink);}
+                                if(newLink.contains(keyword)){
+                                    System.out.println(newLink);
+                                }                            }
                         }
 
 
